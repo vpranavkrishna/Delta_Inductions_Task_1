@@ -18,8 +18,6 @@ import java.util.Arrays;
 import java.util.Collections;
 public class Hackerplus extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "Hackerplus";
-    private int no_of_times =1;
-    private int what_color = 0;
     private ProgressBar progressbar;
     private TextView timer;
     private TextView wrong,correct;
@@ -35,6 +33,7 @@ public class Hackerplus extends AppCompatActivity implements View.OnClickListene
     private String[] options = new String[4];
     private int score = 0;
     String[] days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,9 +50,11 @@ public class Hackerplus extends AppCompatActivity implements View.OnClickListene
         correct.setVisibility(View.VISIBLE);
         progressbar.setMax(30);
         progressbar.setBackgroundColor(ContextCompat.getColor(this,R.color.theme));
+
         Shuffle();
 
         if(savedInstanceState!=null) {
+            score =savedInstanceState.getInt("score");
             Timeleftinmillis = savedInstanceState.getLong("millisleft");
             isTimerRunning = savedInstanceState.getBoolean("millisleft");
             dateon = savedInstanceState.getString("date");
@@ -168,6 +169,7 @@ public class Hackerplus extends AppCompatActivity implements View.OnClickListene
             });
 
         }
+
         if(isTimerRunning)
         {
             pauseTimer();
@@ -313,14 +315,17 @@ public class Hackerplus extends AppCompatActivity implements View.OnClickListene
         }
         @Override
         protected void onSaveInstanceState (@NonNull Bundle outState){
+
             super.onSaveInstanceState(outState);
             outState.putString("date", dateon);
-            //outState.getBundle("color",ContextCompat.getColor(this,R.color.red))
+            outState.putInt("score",score);
+            ContextCompat.getColor(this,R.color.red);
             outState.putBoolean("isTimeRunning", isTimerRunning);
             outState.putString("day", day);
             outState.putStringArray("options", options);
             outState.putBoolean("timerRunning", isTimerRunning);
             outState.putLong("millisleft", Timeleftinmillis);
+
         }
 
 
