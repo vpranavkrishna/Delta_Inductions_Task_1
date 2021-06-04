@@ -135,7 +135,7 @@ public class Hackerplus extends AppCompatActivity implements View.OnClickListene
                         shakeIt(50, -1);
                         view.setBackgroundResource(R.color.green);
                         Log.d(TAG, "onClick: score " + score);
-                        Shuffle();
+
 
                     } else {
 
@@ -259,20 +259,18 @@ public class Hackerplus extends AppCompatActivity implements View.OnClickListene
             public void onTick(long millisUntilFinished) {
                 Timeleftinmillis = millisUntilFinished;
                 updateTimer();
-                if(Timeleftinmillis == 0)
-                    no_of_times =2;
             }
 
             @Override
             public void onFinish() {
                 timer.setText("TIME UP");
                 progressbar.setProgress(0);
-                    if(no_of_times==1) {
+
                         Intent intent = new Intent(Hackerplus.this, Score.class);
                         intent.putExtra("score", score);
                         startActivity(intent);
                         finish();
-                    }
+
 
             }
         }.start();
