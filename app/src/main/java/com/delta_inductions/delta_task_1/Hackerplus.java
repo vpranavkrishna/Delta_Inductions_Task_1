@@ -20,12 +20,11 @@ public class Hackerplus extends AppCompatActivity implements View.OnClickListene
     private static final String TAG = "Hackerplus";
     private ProgressBar progressbar;
     private TextView timer;
-    private TextView wrong,correct;
     private CountDownTimer countDownTimer;
     private static final long START_IN_MILLIS = 30000;
     private long Timeleftinmillis = START_IN_MILLIS;
     private boolean isTimerRunning = false;
-    private TextView date;
+    private TextView date,scorelayout;
     private View view;
     private String day;
     private Button b1, b2, b3, b4;
@@ -42,19 +41,19 @@ public class Hackerplus extends AppCompatActivity implements View.OnClickListene
         view = this.getWindow().getDecorView();
         progressbar= findViewById(R.id.progressbar);
         timer = findViewById(R.id.timer);
-        wrong = findViewById(R.id.wrong);
-        correct = findViewById(R.id.correct);
-        progressbar.setVisibility(View.VISIBLE);
-        timer.setVisibility(View.VISIBLE);
-        wrong.setVisibility(View.VISIBLE);
-        correct.setVisibility(View.VISIBLE);
+        scorelayout = findViewById(R.id.scorelayout);
         progressbar.setMax(30);
         progressbar.setBackgroundColor(ContextCompat.getColor(this,R.color.theme));
-
+        scorelayout.setText("SCORE: " + score);
         Shuffle();
-
+/*Please don't mind the below code I made the orientation
+ portrait the below code is for orientation
+change there is a small bug in the below code which i couldn't resolve
+ so the app runs perfectly the only problem is u cant change orientation
+ */
         if(savedInstanceState!=null) {
             score =savedInstanceState.getInt("score");
+            scorelayout.setText("SCORE: " + score);
             Timeleftinmillis = savedInstanceState.getLong("millisleft");
             isTimerRunning = savedInstanceState.getBoolean("millisleft");
             dateon = savedInstanceState.getString("date");
@@ -72,6 +71,7 @@ public class Hackerplus extends AppCompatActivity implements View.OnClickListene
                     String buttonText = b1.getText().toString();
                     if (buttonText.equals(day)) {
                         score++;
+                        scorelayout.setText("SCORE: " + score);
                         shakeIt(50, -1);
                         view.setBackgroundResource(R.color.green);
                         Log.d(TAG, "onClick: score " + score);
@@ -84,6 +84,7 @@ public class Hackerplus extends AppCompatActivity implements View.OnClickListene
                     } else {
 
                         score--;
+                        scorelayout.setText("SCORE: " + score);
                         shakeIt(300, 10);
                         view.setBackgroundResource(R.color.red);
                         pauseTimer();
@@ -98,6 +99,7 @@ public class Hackerplus extends AppCompatActivity implements View.OnClickListene
                     String buttonText = b2.getText().toString();
                     if (buttonText.equals(day)) {
                         score++;
+                        scorelayout.setText("SCORE: " + score);
                         shakeIt(50, -1);
                         view.setBackgroundResource(R.color.green);
                         Log.d(TAG, "onClick: score " + score);
@@ -108,6 +110,7 @@ public class Hackerplus extends AppCompatActivity implements View.OnClickListene
                     } else {
 
                         score--;
+                        scorelayout.setText("SCORE: " + score);
                         shakeIt(300, 10);
                         view.setBackgroundResource(R.color.red);
                         pauseTimer();
@@ -122,6 +125,8 @@ public class Hackerplus extends AppCompatActivity implements View.OnClickListene
                     String buttonText = b3.getText().toString();
                     if (buttonText.equals(day)) {
                         score++;
+                        scorelayout.setText("SCORE: " + score);
+
                         shakeIt(50, -1);
                         view.setBackgroundResource(R.color.green);
                         Log.d(TAG, "onClick: score " + score);
@@ -133,6 +138,7 @@ public class Hackerplus extends AppCompatActivity implements View.OnClickListene
                     } else {
 
                         score--;
+                        scorelayout.setText("SCORE: " + score);
                         shakeIt(300, 10);
                         view.setBackgroundResource(R.color.red);
                         pauseTimer();
@@ -147,6 +153,7 @@ public class Hackerplus extends AppCompatActivity implements View.OnClickListene
                     String buttonText = b3.getText().toString();
                     if (buttonText.equals(day)) {
                         score++;
+                        scorelayout.setText("SCORE: " + score);
                         shakeIt(50, -1);
                         view.setBackgroundResource(R.color.green);
                         Log.d(TAG, "onClick: score " + score);
@@ -159,6 +166,7 @@ public class Hackerplus extends AppCompatActivity implements View.OnClickListene
                     } else {
 
                         score--;
+                        scorelayout.setText("SCORE: " + score);
                         shakeIt(300, 10);
                         view.setBackgroundResource(R.color.red);
                         pauseTimer();
@@ -240,6 +248,7 @@ public class Hackerplus extends AppCompatActivity implements View.OnClickListene
         String buttonText = b.getText().toString();
         if (buttonText.equals(day)) {
             score++;
+            scorelayout.setText("SCORE: " + score);
             shakeIt(50,-1);
             view.setBackgroundResource(R.color.green);
             Log.d(TAG, "onClick: score " + score);
@@ -253,6 +262,7 @@ public class Hackerplus extends AppCompatActivity implements View.OnClickListene
             {
 
             score--;
+                scorelayout.setText("SCORE: " + score);
             shakeIt(300,10);
             view.setBackgroundResource(R.color.red);
             pauseTimer();

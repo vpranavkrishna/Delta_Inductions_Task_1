@@ -19,35 +19,9 @@
         android:textSize="24sp"
         android:layout_marginTop="40dp"
 
-    />
-<!--    <Button-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="60dp"-->
-<!--        android:textAllCaps="false"-->
-<!--        android:text="Normal"-->
-<!--        android:background="@drawable/round_button"-->
-<!--        android:textSize="24dp"-->
-<!--        android:paddingHorizontal="40dp"-->
-<!--        android:layout_marginTop="50dp"-->
-<!--        android:layout_marginBottom="40dp"-->
-<!--        android:textColor="@color/white"-->
-<!--        android:id="@+id/normal"-->
-<!--        />-->
 
-<!--    <Button-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="60dp"-->
-<!--        android:textAllCaps="false"-->
-<!--        android:text="Hacker"-->
-<!--        android:textSize="24dp"-->
-<!--        android:paddingHorizontal="40dp"-->
-<!--        android:layout_marginTop="40dp"-->
-<!--        android:layout_marginBottom="40dp"-->
-<!--        android:textColor="@color/white"-->
-<!--        android:id="@+id/hacker"-->
-<!--        android:background="@drawable/round_button"-->
-<!---->
-<!--        />-->
+    />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="60dp"
@@ -56,13 +30,23 @@
         android:textSize="24dp"
         android:paddingHorizontal="22dp"
         android:layout_gravity="center"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="60dp"
         android:layout_marginBottom="40dp"
         android:textColor="@color/white"
         android:id="@+id/hackerplus"
         android:background="@drawable/round_button"
         android:textColorLink="@color/red"
 
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="HIGHSCORE"
+        android:textSize="25dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:id="@+id/highscorelayout"
         />
 
 

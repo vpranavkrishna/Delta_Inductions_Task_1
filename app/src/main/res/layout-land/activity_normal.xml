@@ -74,10 +74,21 @@
         android:text="12/10/2021"
         android:layout_marginTop="125dp"
         android:layout_marginLeft="140dp"
-
-
         />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:background="@drawable/round_button"
+        android:text="SCORE-"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:id="@+id/scorelayout"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="180dp"
+
+        />
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
