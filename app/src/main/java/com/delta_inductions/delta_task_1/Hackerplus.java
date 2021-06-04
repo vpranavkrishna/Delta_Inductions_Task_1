@@ -41,7 +41,6 @@ public class Hackerplus extends AppCompatActivity implements View.OnClickListene
         setContentView(R.layout.activity_normal);
         date = findViewById(R.id.date);
         view = this.getWindow().getDecorView();
-        Shuffle();
         progressbar= findViewById(R.id.progressbar);
         timer = findViewById(R.id.timer);
         wrong = findViewById(R.id.wrong);
@@ -52,9 +51,9 @@ public class Hackerplus extends AppCompatActivity implements View.OnClickListene
         correct.setVisibility(View.VISIBLE);
         progressbar.setMax(30);
         progressbar.setBackgroundColor(ContextCompat.getColor(this,R.color.theme));
+        Shuffle();
 
-        if(savedInstanceState!=null)
-        {
+        if(savedInstanceState!=null) {
             Timeleftinmillis = savedInstanceState.getLong("millisleft");
             isTimerRunning = savedInstanceState.getBoolean("millisleft");
             dateon = savedInstanceState.getString("date");
@@ -76,13 +75,19 @@ public class Hackerplus extends AppCompatActivity implements View.OnClickListene
                         view.setBackgroundResource(R.color.green);
                         Log.d(TAG, "onClick: score " + score);
                         Shuffle();
+                        pauseTimer();
+                        resetTimer();
+                        startTimer(0);
+
 
                     } else {
 
                         score--;
                         shakeIt(300, 10);
                         view.setBackgroundResource(R.color.red);
-                        Shuffle();
+                        pauseTimer();
+                        startTimer(10000);
+
                     }
                 }
             });
@@ -96,13 +101,17 @@ public class Hackerplus extends AppCompatActivity implements View.OnClickListene
                         view.setBackgroundResource(R.color.green);
                         Log.d(TAG, "onClick: score " + score);
                         Shuffle();
-
+                        pauseTimer();
+                        resetTimer();
+                        startTimer(0);
                     } else {
 
                         score--;
                         shakeIt(300, 10);
                         view.setBackgroundResource(R.color.red);
-                        Shuffle();
+                        pauseTimer();
+                        startTimer(10000);
+
                     }
                 }
             });
@@ -116,13 +125,18 @@ public class Hackerplus extends AppCompatActivity implements View.OnClickListene
                         view.setBackgroundResource(R.color.green);
                         Log.d(TAG, "onClick: score " + score);
                         Shuffle();
+                        pauseTimer();
+                        resetTimer();
+                        startTimer(0);
 
                     } else {
 
                         score--;
                         shakeIt(300, 10);
                         view.setBackgroundResource(R.color.red);
-                        Shuffle();
+                        pauseTimer();
+                        startTimer(10000);
+
                     }
                 }
             });
@@ -135,6 +149,10 @@ public class Hackerplus extends AppCompatActivity implements View.OnClickListene
                         shakeIt(50, -1);
                         view.setBackgroundResource(R.color.green);
                         Log.d(TAG, "onClick: score " + score);
+                        Shuffle();
+                        pauseTimer();
+                        resetTimer();
+                        startTimer(0);
 
 
                     } else {
@@ -142,14 +160,14 @@ public class Hackerplus extends AppCompatActivity implements View.OnClickListene
                         score--;
                         shakeIt(300, 10);
                         view.setBackgroundResource(R.color.red);
-                        Shuffle();
+                        pauseTimer();
+                        startTimer(10000);
+
                     }
                 }
             });
 
-
-            }
-
+        }
         if(isTimerRunning)
         {
             pauseTimer();
@@ -159,7 +177,8 @@ public class Hackerplus extends AppCompatActivity implements View.OnClickListene
             startTimer(0);
         }
         updateTimer();
-        }
+            }
+
 
     //function to get random date and to get the corresponding day
     public void Shuffle() {
@@ -223,6 +242,9 @@ public class Hackerplus extends AppCompatActivity implements View.OnClickListene
             view.setBackgroundResource(R.color.green);
             Log.d(TAG, "onClick: score " + score);
             Shuffle();
+            pauseTimer();
+            resetTimer();
+            startTimer(0);
 
         }
         else
@@ -231,9 +253,8 @@ public class Hackerplus extends AppCompatActivity implements View.OnClickListene
             score--;
             shakeIt(300,10);
             view.setBackgroundResource(R.color.red);
-            Shuffle();
             pauseTimer();
-            startTimer(5000);
+            startTimer(10000);
             }
 
 
@@ -250,10 +271,8 @@ public class Hackerplus extends AppCompatActivity implements View.OnClickListene
         }
 
 
-    private void startTimer(int loss)
-
-    {
-        countDownTimer = new CountDownTimer(Timeleftinmillis-loss,1000) {
+    private void startTimer(int loss) {
+        countDownTimer = new CountDownTimer(Timeleftinmillis - loss, 1000) {
             @Override
 
             public void onTick(long millisUntilFinished) {
@@ -266,41 +285,43 @@ public class Hackerplus extends AppCompatActivity implements View.OnClickListene
                 timer.setText("TIME UP");
                 progressbar.setProgress(0);
 
-                        Intent intent = new Intent(Hackerplus.this, Score.class);
-                        intent.putExtra("score", score);
-                        startActivity(intent);
-                        finish();
+                Intent intent = new Intent(Hackerplus.this, Score.class);
+                intent.putExtra("score", score);
+                startActivity(intent);
+                finish();
 
 
             }
         }.start();
-
-}
- private void updateTimer()
- {
-     timer.setText("TIME REMAINING" + Timeleftinmillis/1000);
-     progressbar.setProgress((int) Timeleftinmillis/1000);
- }
- private void pauseTimer()
- {
-     countDownTimer.cancel();
-     isTimerRunning = false;
- }
- private void resetTimer()
- {
-     Timeleftinmillis = START_IN_MILLIS;
-     updateTimer();
- }
-    @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putString("date",dateon);
-        //outState.getBundle("color",ContextCompat.getColor(this,R.color.red))
-        outState.putString("day",day);
-        outState.putStringArray("options",options);
-        outState.putBoolean("timerRunning",isTimerRunning);
-        outState.putLong("millisleft",Timeleftinmillis);
     }
 
-}
 
+        private void updateTimer ()
+        {
+            timer.setText("TIME REMAINING" + Timeleftinmillis / 1000);
+            progressbar.setProgress((int) Timeleftinmillis / 1000);
+        }
+        private void pauseTimer ()
+        {
+            countDownTimer.cancel();
+            isTimerRunning = false;
+        }
+        private void resetTimer ()
+        {
+            Timeleftinmillis = START_IN_MILLIS;
+            updateTimer();
+        }
+        @Override
+        protected void onSaveInstanceState (@NonNull Bundle outState){
+            super.onSaveInstanceState(outState);
+            outState.putString("date", dateon);
+            //outState.getBundle("color",ContextCompat.getColor(this,R.color.red))
+            outState.putBoolean("isTimeRunning", isTimerRunning);
+            outState.putString("day", day);
+            outState.putStringArray("options", options);
+            outState.putBoolean("timerRunning", isTimerRunning);
+            outState.putLong("millisleft", Timeleftinmillis);
+        }
+
+
+    }
