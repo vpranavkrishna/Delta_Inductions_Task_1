@@ -21,12 +21,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" ></activity>
-        <activity android:name=".Hackerplus" android:parentActivityName=".MainActivity">
+        <activity android:name=".Hackerplus" android:parentActivityName=".MainActivity" android:screenOrientation="portrait">
 
         </activity>
-<!--        <activity android:name=".Scoreplus" android:screenOrientation="portrait" android:parentActivityName=".MainActivity">-->
 
-<!--        </activity>-->
     </application>
 
 </manifest>
